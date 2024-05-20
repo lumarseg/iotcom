@@ -1,4 +1,4 @@
-name: broker-app
+name: brokerapp
 
 services:
 
@@ -9,7 +9,7 @@ services:
     ports:
       - "1880:1880"
     volumes:
-      - nodered-data:/data
+      - nodereddata:/data
     networks:
       backend:
         ipv4_address: 172.20.0.2
@@ -22,18 +22,18 @@ services:
       - "1883:1883"
       - "9001:9001"
     volumes:
-      - mosquitto-config:/mosquitto/config
-      - mosquitto-data:/mosquitto/data
-      - mosquitto-log:/mosquitto/log
+      - mosquittoconfig:/mosquitto/config
+      - mosquittodata:/mosquitto/data
+      - mosquittolog:/mosquitto/log
     networks:
       backend:
         ipv4_address: 172.20.0.3
 
 volumes:
-  nodered-data:
-  mosquitto-config:
-  mosquitto-data:
-  mosquitto-log:
+  nodereddata:
+  mosquittoconfig:
+  mosquittodata:
+  mosquittolog:
 
 networks:
   backend:
