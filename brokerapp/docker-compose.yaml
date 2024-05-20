@@ -6,6 +6,8 @@ services:
     image: nodered/node-red:latest
     container_name: nodered
     restart: unless-stopped
+    enviroment:
+      - TZ=America/Costa_Rica
     ports:
       - "1880:1880"
     volumes:
@@ -22,7 +24,7 @@ services:
       - "1883:1883"
       - "9001:9001"
     volumes:
-      - mosquittoconfig:/mosquitto/config
+      - ./mosquitto_config:/mosquitto/config
       - mosquittodata:/mosquitto/data
       - mosquittolog:/mosquitto/log
     networks:
