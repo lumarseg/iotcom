@@ -6,6 +6,8 @@ services:
     image: nodered/node-red:latest
     container_name: nodered
     restart: unless-stopped
+    depends_on:
+      - mosquitto
     ports:
       - "1880:1880"
     volumes:
@@ -31,7 +33,6 @@ services:
 
 volumes:
   nodereddata:
-  mosquittoconfig:
   mosquittodata:
   mosquittolog:
 
