@@ -1,0 +1,43 @@
+name: broker-app
+
+services:
+
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    volumes:
+      - nodered-data:/data
+    networks:
+      backend:
+        ipv4_address: 172.20.0.2
+
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - mosquitto-config:/mosquitto/config
+      - mosquitto-data:/mosquitto/data
+      - mosquitto-log:/mosquitto/log
+    networks:
+      backend:
+        ipv4_address: 172.20.0.3
+
+volumes:
+  nodered-data:
+  mosquitto-config:
+  mosquitto-data:
+  mosquitto-log:
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
